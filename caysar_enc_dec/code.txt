@@ -1,0 +1,55 @@
+//by simple engineer  
+// with all my love dym@ntu.edu.iq  
+// you can do best just make it simple ......
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace caysar_enc_dec
+{
+    public class caesar
+    {
+        string str_msg, s;
+        int int_key, i;
+
+        public void start()
+        {
+            Console.Write("1 to encrypt 2 to decrypt : "); s = Console.ReadLine();
+            Console.Write("enter the text : "); str_msg = Console.ReadLine().ToLower();
+            Console.Write(" enter the key : "); int_key = int.Parse(Console.ReadLine());
+            
+            int[] arr_out_msg = new int[str_msg.Length];
+
+            for (i = 0; i < str_msg.Length; i++)
+            {
+                if (s == "1")
+                {
+
+                    arr_out_msg[i] = str_msg[i] + int_key;
+                    while (arr_out_msg[i] > 'z') arr_out_msg[i] -= 26;       // filtter a -> z
+                }
+                else if (s == "2")
+                {
+                    arr_out_msg[i] = str_msg[i] - int_key;
+                    while (arr_out_msg[i] < 'a') arr_out_msg[i] += 26;  // filtter a -> z
+                }
+                if (str_msg[i] < 'a' | str_msg[i] > 'z') arr_out_msg[i] = ' ';   //for none letter text
+                Console.Write((char)arr_out_msg[i]);
+            }
+            Console.WriteLine();
+
+        }
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            caesar c1=new caesar();
+            c1.start();
+        }
+    }
+}
